@@ -71,7 +71,6 @@ def hangedman(hangman):
     |      / \
     =============
 """]
-
     print (graphic[hangman])
     return
 
