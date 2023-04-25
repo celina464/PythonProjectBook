@@ -7,79 +7,74 @@ computer_score = 0
 
 def hangedman(hangman):
     graphic = [
-    """
-    +-------+
-    |
-    |
-    |
-    |
-    |
-    =========
-"""
-,
-"""
+            """
+            +-------+
+            |
+            |
+            |
+            |
+            |
+            =========
+        """
+        ,
+        """
+            
+            +-------+
+            |       |
+            |       0
+            |
+            |
+            =============
+        """
+            ,
+        """
+            +-------+
+            |       |
+            |       0
+            |       |
+            |
+            =============
+        """
+            ,
+        """
+            +-------+
+            |       |
+            |       0
+            |      -|
+            |
+            =============
+        """
+            ,
+        """
+            +-------+
+            |       |
+            |       0
+            |      -|-
+            |
+            =============
+        """
+            ,
+        """
+            +-------+
+            |       |
+            |       0
+            |      -|-
+            |      /
+            =============
+        """
+            ,
+        """
+            +-------+
+            |       |
+            |       0
+            |      -|-
+            |      / \
+            =============
+        """,]
     
-    +-------+
-    |       |
-    |       0
-    |
-    |
-    =============
-"""
-    ,
-"""
-    +-------+
-    |       |
-    |       0
-    |       |
-    |
-    =============
-"""
-    ,
-"""
-    +-------+
-    |       |
-    |       0
-    |      -|
-    |
-    =============
-"""
-    ,
-"""
-    +-------+
-    |       |
-    |       0
-    |      -|-
-    |
-    =============
-"""
-    ,
-"""
-    +-------+
-    |       |
-    |       0
-    |      -|-
-    |      /
-    =============
-"""
-    ,
-"""
-    +-------+
-    |       |
-    |       0
-    |      -|-
-    |      / \
-    =============
-"""]
     print (graphic[hangman])
     return
 
-def start():
-    print ("Let's play a game of Linux Hangman.")
-    while game():
-        pass
-    scores()
-    
 def game():
     dictionary = ["gnu", "kernel", "linux", "mageia", "penguin", "ubuntu"]
     word = choice(dictionary)
@@ -127,14 +122,14 @@ def game():
         return play_again()
     def guess_letter():
         print
-        letter = raw_input("Take a guess at our mystery word: ")
+        letter = input("Take a guess at our mystery word: ")
         letter.strip()
         letter.lower()
         print
         return letter
     
     def play_again():
-        answer = raw_input("Would you like to play again? y/n: ")
+        answer = input("Would you like to play again? y/n: ")
         if answer in ("y", "Y", "yes", "Yes", "Of course!"):
             return answer
         else:
@@ -148,7 +143,12 @@ def game():
         
         if _name_ == '_main_':
             start()
-    
+def start():
+    print ("Let's play a game of Linux Hangman.")
+    while game():
+        pass
+    scores()
+        
     
     
     
