@@ -72,8 +72,8 @@ def hangedman(hangman):
     =============
 """]
 
-print (graphic[hangman])
-return
+    print (graphic[hangman])
+    return
 
 def start():
     print ("Let's play a game of Linux Hangman.")
