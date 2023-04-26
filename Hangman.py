@@ -1,4 +1,14 @@
 
+"""
+//    log.debug("The function is a game of hangman with a pre-defined list of words and includes graphics for the")
+//    log.debug("The function is a game of hangman with a pre-defined list of words and includes graphics for the")
+//    hangman, scoring, and the ability to play again.
+//    
+//    :param hangman: A list of strings representing the different stages of the hangman graphic to be
+//    printed during the game
+//    :return: The code does not have any output as it contains only function and class definitions. It
+//    does not have any function calls or executable code outside of the function definitions.
+//   """
 
 from random import *
 
