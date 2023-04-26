@@ -1,4 +1,4 @@
-#!usr/bin/env python2
+
 
 from random import *
 
@@ -7,7 +7,7 @@ computer_score = 0
 
 def hangedman(hangman):
     graphic = [
-            """
+        """
             +-------+
             |
             |
@@ -15,18 +15,15 @@ def hangedman(hangman):
             |
             |
             =========
-        """
-        ,
-        """
-            
+        """,
+        """    
             +-------+
             |       |
             |       0
             |
             |
             =============
-        """
-            ,
+        """,
         """
             +-------+
             |       |
@@ -34,8 +31,7 @@ def hangedman(hangman):
             |       |
             |
             =============
-        """
-            ,
+        """,
         """
             +-------+
             |       |
@@ -43,8 +39,7 @@ def hangedman(hangman):
             |      -|
             |
             =============
-        """
-            ,
+        """,
         """
             +-------+
             |       |
@@ -52,8 +47,7 @@ def hangedman(hangman):
             |      -|-
             |
             =============
-        """
-            ,
+        """,
         """
             +-------+
             |       |
@@ -61,8 +55,7 @@ def hangedman(hangman):
             |      -|-
             |      /
             =============
-        """
-            ,
+        """,
         """
             +-------+
             |       |
@@ -71,8 +64,7 @@ def hangedman(hangman):
             |      / \
             =============
         """,]
-    
-    print (graphic[hangman])
+    print(graphic[hangman])
     return
 
 def game():
