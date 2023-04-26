@@ -15,6 +15,12 @@ from random import *
 player_score = 0
 computer_score = 0
 
+def start():
+    print ("Let's play a game of Linux Hangman.")
+    while game():
+        pass
+    scores()
+
 def hangedman(hangman):
     graphic = [
         """
@@ -145,11 +151,7 @@ def game():
         
         if _name_ == '_main_':
             start()
-def start():
-    print ("Let's play a game of Linux Hangman.")
-    while game():
-        pass
-    scores()
+
         
     
     
