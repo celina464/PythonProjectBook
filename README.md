@@ -1,0 +1,3 @@
+# PythonProjectBook
+
+Hola! podemos trabajar en conjunto! fijense si podemos modificar el codigo para que funcione, el RPS funciona, el Hangman no... 
