@@ -1,3 +1,4 @@
+import contextlib
 import random
 from itertools import groupby
 
@@ -21,62 +22,61 @@ def start():
 
 def game():
     print ("The computer will help you to pick a card.")
-    while game():
-        pass
-    scores()
+    throws()
+    return play_again()
     
 def throws():
     roll_number = 5
     dice = roll(roll_number)
+    result = _extracted_from_throws_(dice)
+    print ("You currently have", names[result])
+
+    while true:
+        rerolls = int(input("How many dice do you want to throw again?"))
+        with contextlib.suppress(ValueError):
+            if rerolls in {1, 2, 3, 4, 5}:
+                break
+        print ("Oops! I didn't understand that. Please enter 1, 2, 3, 4, or 5.")
+
+    if rerolls != 0:
+        result = _extracted_from_throws_(rerolls, dice)
+    print ("You finish with", names[result])
+
+
+# TODO Rename this here and in `throws`
+def _extracted_from_throws_(rerolls, dice):
+    roll_number = rerolls
+    dice_rerolls = roll(roll_number)
+    dice_changes = range(rerolls)
+    print ("Enter the number of a dice to reroll: ")
+    iterations = 0
+    while iterations < rerolls:
+        iterations += 1
+        while true:
+            selection = int(input())
+            with contextlib.suppress(ValueError):
+                if selection in {1, 2, 3, 4, 5}:
+                    break
+            print ("Oops! I didn't understand that. Please enter 1, 2, 3, 4, or 5.")
+        dice_changes[iterations - 1] = selection - 1
+        print ("Dice", selection, ":", dice_rerolls[iterations - 1])
+
+    iterations = 0
+
+    while iterations < rerolls:
+        iterations += 1
+        replacement = dice_changes[iterations - 1]
+        dice[dice_changes[iterations - 1]] = replacement
+
+    return _extracted_from_throws_(dice)
+
+
+# TODO Rename this here and in `throws`
+def _extracted_from_throws_(dice):
     dice.sort()
     for i in range(len(dice)):
         print ("Dice", i + 1, ":", dice[i])
-        
-    result = hand(dice)
-    print ("You currently have", names[result])
-    
-    while true:
-        rerolls = int(input("How many dice do you want to throw again?"))
-        try:
-            if rerolls in (1,2,3,4,5):
-                break
-        except ValueError:
-            pass
-        print ("Oops! I didn't understand that. Please enter 1, 2, 3, 4, or 5.")
-    
-    if rerolls == 0:
-        print ("You finish with", names[result])
-    else:
-        roll_number = rerolls
-        dice_rerolls = roll(roll_number)
-        dice_changes = range(rerolls)
-        print ("Enter the number of a dice to reroll: ")
-        iterations = 0
-        while iterations < rerolls:
-            iterations += 1
-            while true:
-                selection = int(input())
-                try:
-                    if selection in (1,2,3,4,5):
-                        break
-                except ValueError:
-                    pass
-                print ("Oops! I didn't understand that. Please enter 1, 2, 3, 4, or 5.")
-            dice_changes[iterations - 1] = selection - 1
-            print ("Dice", selection, ":", dice_rerolls[iterations - 1])
-        
-        iterations = 0
-        
-        while iterations < rerolls:
-            iterations += 1
-            replacement = dice_changes[iterations - 1]
-            dice[dice_changes[iterations - 1]] = replacement
-        
-        dice.sort()
-        for i in range(len(dice)):
-            print ("Dice", i + 1, ":", dice[i])
-        result = hand(dice)
-        print ("You finish with", names[result])
+    return hand(dice)
         
 def roll(roll_number):
     numbers = range(1,7)
@@ -84,7 +84,7 @@ def roll(roll_number):
     iterations = 0
     while iterations < roll_number:
         iterations += 1
-        dice[iterations - 1] = choice(numbers)
+        dice[iterations - 1] =random.choice(numbers)
     return dice
 
 def hand(dice):
