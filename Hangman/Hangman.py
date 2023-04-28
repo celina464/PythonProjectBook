@@ -16,6 +16,7 @@ player_score = 0
 computer_score = 0
 
 def hangedman(hangman):
+    log.debug("hangman is %s", hangman)
     graphic = [
         """
             +-------+
@@ -113,7 +114,7 @@ def game():  # sourcery skip: low-code-quality
                             clue[i] = letter
         else:
             print ("Choose another.")
-            
+        
         hangedman(letters_wrong)
         print (" ").join(clue)
         print ("Guesses: "), letters_tried
