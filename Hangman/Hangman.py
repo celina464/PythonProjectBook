@@ -15,12 +15,6 @@ from random import *
 player_score = 0
 computer_score = 0
 
-def start():
-    print ("Let's play a game of Linux Hangman.")
-    while game():
-        pass
-    scores()
-
 def hangedman(hangman):
     graphic = [
         """
@@ -83,6 +77,12 @@ def hangedman(hangman):
     print(graphic[hangman])
     return
 
+def start():
+    print ("Let's play a game of Linux Hangman.")
+    while game():
+        pass
+    scores()
+
 def game():  # sourcery skip: low-code-quality
     dictionary = ["gnu", "kernel", "linux", "mageia", "penguin", "ubuntu"]
     word = choice(dictionary)
@@ -113,6 +113,7 @@ def game():  # sourcery skip: low-code-quality
                             clue[i] = letter
         else:
             print ("Choose another.")
+            
         hangedman(letters_wrong)
         print (" ").join(clue)
         print ("Guesses: "), letters_tried
@@ -150,5 +151,5 @@ def scores():
     print ("Player: "), player_score
     print ("Computer: "), computer_score
         
-    if _name_ == '_main_':
+    if __name__ == '__main__':
         start()
