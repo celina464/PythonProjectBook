@@ -83,7 +83,7 @@ def hangedman(hangman):
     print(graphic[hangman])
     return
 
-def game():
+def game():  # sourcery skip: low-code-quality
     dictionary = ["gnu", "kernel", "linux", "mageia", "penguin", "ubuntu"]
     word = choice(dictionary)
     word_length = len(word)
@@ -128,26 +128,27 @@ def game():
             player_score += 1
             break
         return play_again()
-    def guess_letter():
-        print
-        letter = input("Take a guess at our mystery word: ")
-        letter.strip()
-        letter.lower()
-        print
-        return letter
     
-    def play_again():
-        answer = input("Would you like to play again? y/n: ")
-        if answer in ("y", "Y", "yes", "Yes", "Of course!"):
-            return answer
-        else:
-            print ("Thank you very much for playing our game. See you next time!")
+def guess_letter():
+    print
+    letter = input("Take a guess at our mystery word: ")
+    letter.strip()
+    letter.lower()
+    print
+    return letter
     
-    def scores():
-        global player_score, computer_score
-        print ("HIGH SCORES")
-        print ("Player: "), player_score
-        print ("Computer: "), computer_score
+def play_again():
+    answer = input("Would you like to play again? y/n: ")
+    if answer in ("y", "Y", "yes", "Yes", "Of course!"):
+        return answer
+    else:
+        print ("Thank you very much for playing our game. See you next time!")
+    
+def scores():
+    global player_score, computer_score
+    print ("HIGH SCORES")
+    print ("Player: "), player_score
+    print ("Computer: "), computer_score
         
-        if _name_ == '_main_':
-            start()
+    if _name_ == '_main_':
+        start()
