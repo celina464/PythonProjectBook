@@ -34,11 +34,39 @@ def throws():
                 break
         print ("Oops! I didn't understand that. Please enter 1, 2, 3, 4, or 5.")
 
-    if rerolls != 0:
+    if rerolls == 0:
         result = _extracted_from_throws_(rerolls, dice)
-    print ("You finish with", names[result])
-
-
+        print ("You finish with", names[result])
+    else:
+        roll_number = rerolls
+        dice_rerolls = roll(roll_number)
+        dice_changes = range(rerolls)
+        print ("Enter the number of a dice to reroll: ")
+        iterations = 0
+        while iterations < rerolls:
+            iterations += 1
+            while True:
+                selection = int(input())
+                with contextlib.suppress(ValueError):
+                    if selection in {1, 2, 3, 4, 5}:
+                        break
+                print ("Oops! I didn't understand that. Please enter 1, 2, 3, 4, or 5.")
+            dice_changes[iterations - 1] = selection - 1
+            print ("You have changed Dice", selection, ":", names[dice_rerolls[iterations - 1]])        
+        iterations = 0
+        
+        while iterations < rerolls:
+            iterations += 1
+            replacement = dice_changes[iterations - 1]
+            dice[dice_changes[iterations - 1]] = dice_rerolls[replacement]
+        
+        dice.sort()
+        for i in range(len(dice)):
+            print ("Dice", i + 1, ":", names[dice[i]])
+        
+        result = hand(dice)
+        print ("You finish with", result)
+        
 # TODO Rename this here and in `throws`
 def _extracted_from_throws_(rerolls, dice):
     roll_number = rerolls
@@ -67,7 +95,6 @@ def _extracted_from_throws_(rerolls, dice):
     return _extracted_from_throws_(dice)
 
 
-# TODO Rename this here and in `throws`
 def _extracted_from_throws_(dice):
     dice.sort()
     for i in range(len(dice)):
@@ -90,20 +117,20 @@ def hand(dice):
     straight2 = [2,3,4,5,6]
 
     if dice in [straight1, straight2]:
-        return straight2
+        return "a straight2"
 
     elif dice_hand[0] == 5:
-        return five
+        return "five of a kind!"
 
     elif dice_hand[0] == 4:
-        return four
+        return "four of a kind!"
 
     elif dice_hand[0] == 3:
-        return full_house if dice_hand[1] == 2 else three
+        return " a full_house!" if dice_hand[1] == 2 else "three of a kind!"
     elif dice_hand[0] == 2:
-        return two_pair if dice_hand[1] == 2 else one_pair
+        return "two_pair" if dice_hand[1] == 2 else "one_pair"
     else:
-        return nine
+        return "nine"
 
 def play_again():
     answer = input("Would you like to play again? y/n: ")
