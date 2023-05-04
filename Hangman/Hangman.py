@@ -77,7 +77,7 @@ def hangedman(hangman):
             |       |
             |       O
             |      -|-
-            |      / \\
+            |      / \
             |
             ==============
         """]
@@ -87,6 +87,12 @@ def hangedman(hangman):
 
     
 def guess_letter():
+    """
+    This function prompts the user to guess a letter for a mystery word and returns the guessed letter
+    in lowercase after stripping any whitespace.
+    :return: The letter guessed by the user after being stripped of any leading or trailing white space
+    and converted to lowercase.
+    """
     print
     letter = input("Take a guess at our mystery word: ")
     letter.strip()
@@ -95,6 +101,13 @@ def guess_letter():
     return letter
     
 def play_again():
+    """
+    The function asks the user if they want to play again and returns their answer if it is "y", "Y",
+    "yes", "Yes", or "Of course!", otherwise it prints a message thanking them for playing.
+    :return: the user's input if it is "y", "Y", "yes", "Yes", or "Of course!". If the input is anything
+    else, the function does not return anything, but prints a message thanking the user for playing the
+    game.
+    """
     answer = input("Would you like to play again? y/n: ")
     if answer in ("y", "Y", "yes", "Yes", "Of course!"):
         return answer
@@ -102,6 +115,9 @@ def play_again():
         print ("Thank you very much for playing our game. See you next time!")
     
 def scores():
+    """
+    The function "scores" prints the high scores of the player and computer.
+    """
     global player_score, computer_score
     print ("HIGH SCORES")
     print ("Player: ",player_score)
@@ -109,13 +125,22 @@ def scores():
 
 
 def start():
+    """
+    The function starts a game of Linux Hangman and keeps playing until the user decides to quit, then
+    displays the scores.
+    """
     print ("Let's play a game of Linux Hangman.")
     while game():
         pass
     scores()
 
 def game():  # sourcery skip: low-code-quality
-    dictionary = ["gnu"]
+    """
+    This function is a simple hangman game where the player has to guess a randomly chosen word from a
+    list of words.
+    :return: The function `play_again()` is being returned.
+    """
+    dictionary = ["gnu”,”kernel”,”linux”,”mageia”,"penguin”,”ubuntu”]
     word = choice(dictionary)
     word_length = len(word)
     clue = word_length * [""]
@@ -126,6 +151,18 @@ def game():  # sourcery skip: low-code-quality
     letters_wrong = 0
     global computer_score, player_score
     
+# This is the main game loop for the hangman game. It checks if the number of wrong guesses is less
+# than the maximum allowed tries and if the current guessed word is not equal to the actual word. It
+# then prompts the user to guess a letter using the `guess_letter()` function and checks if the input
+# is a single letter and an alphabet. If the letter has already been guessed, it prints a message
+# saying so. If the letter is not in the word, it increments the number of wrong guesses and prints a
+# message saying so. If the letter is in the word, it updates the `clue` list with the correct
+# letter(s) and prints a message saying so. Finally, it prints the hangman graphic, the current state
+# of the `clue` list, and the letters guessed so far. If the number of wrong guesses equals the
+# maximum allowed tries, it prints a message saying the game is over and increments the computer's
+# score. If the current guessed word is equal to the actual word, it prints a message saying the
+# player has won and increments the player's score. It then returns the result of the `play_again()`
+# function.
     while (letters_wrong != tries) and ("".join(clue) != word):
         letter=guess_letter()
         if len(letter)==1 and letter.isalpha():
@@ -141,9 +178,10 @@ def game():  # sourcery skip: low-code-quality
                     print("Congratulations,", letter, "is correct.")
                     for i in range(word_length):
                         if letter == word[i]:
-                            clue[i] == letter
+                            clue[i] = letter
         else:
             print("Choose another.")
+            
         hangedman(letters_wrong)
         print("".join(clue))
         print("Guesses: ", letters_tried)
