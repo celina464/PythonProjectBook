@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import contextlib
 import random
 from itertools import groupby
@@ -28,10 +30,14 @@ def game():
 def throws():
     roll_number = 5
     dice = roll(roll_number)
-    result = _extracted_from_throws_(dice)
-    print ("You currently have", names[result])
+    dice.sort()
+    for i in range(len(dice)):
+        print ("Dice", i + 1, ":", names[dice[i]])
+    
+    result = hand(dice)
+    print ("You currently have", result)
 
-    while true:
+    while True:
         rerolls = int(input("How many dice do you want to throw again?"))
         with contextlib.suppress(ValueError):
             if rerolls in {1, 2, 3, 4, 5}:
