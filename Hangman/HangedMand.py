@@ -77,7 +77,7 @@ def hangedman(hangman):
             |       |
             |       O
             |      -|-
-            |      / \\
+            |      / \
             |
             ==============
         """]
@@ -115,7 +115,7 @@ def start():
     scores()
 
 def game():  # sourcery skip: low-code-quality
-    dictionary = ["gnu"]
+    dictionary = ["gnu”,”kernel”,”linux”,”mageia”,"penguin”,”ubuntu”]
     word = choice(dictionary)
     word_length = len(word)
     clue = word_length * [""]
