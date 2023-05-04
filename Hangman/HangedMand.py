@@ -141,7 +141,7 @@ def game():  # sourcery skip: low-code-quality
                     print("Congratulations,", letter, "is correct.")
                     for i in range(word_length):
                         if letter == word[i]:
-                            clue[i] == letter
+                            clue[i] = letter
         else:
             print("Choose another.")
             
