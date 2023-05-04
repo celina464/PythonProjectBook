@@ -112,11 +112,6 @@ def play_again():
     else:
         print ("Thank you very much for playing our game. See you next time!")
         
-def scores():
-    global player_score, computer_score
-    print ("HIGH SCORES")
-    print ("Player: ", player_score)
-    print ("Computer: ", computer_score)
 
 def game():
     print ("The computer will help you to pick a card.")
@@ -128,6 +123,12 @@ def start():
     while game():
         pass
     scores()
+
+def scores():
+    global player_score, computer_score
+    print ("HIGH SCORES")
+    print ("Player: ", player_score)
+    print ("Computer: ", computer_score)
 
 if __name__ == '__main__':
     start()
