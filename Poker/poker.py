@@ -16,16 +16,6 @@ names = {nine: "Nine", ten: "Ten", jack: "Jack", queen: "Queen", king: "King", a
 player_score = 0
 computer_score = 0
 
-def start():
-    print ("Let's play a game of Linux Poker.")
-    while game():
-        pass
-    scores()
-
-def game():
-    print ("The computer will help you to pick a card.")
-    throws()
-    return play_again()
     
 def throws():
     roll_number = 5
@@ -127,6 +117,17 @@ def scores():
     print ("HIGH SCORES")
     print ("Player: ", player_score)
     print ("Computer: ", computer_score)
+
+def game():
+    print ("The computer will help you to pick a card.")
+    throws()
+    return play_again()
+
+def start():
+    print ("Let's play a game of Linux Poker.")
+    while game():
+        pass
+    scores()
 
 if __name__ == '__main__':
     start()
