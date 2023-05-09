@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import contextlib
 import random
 from itertools import groupby
@@ -16,16 +14,21 @@ names = {nine: "Nine", ten: "Ten", jack: "Jack", queen: "Queen", king: "King", a
 player_score = 0
 computer_score = 0
 
+def roll(roll_number):
+    numbers = list(range(1, 7)) #No lo toma, en la linea 77, aunque sea lista
+    dice = range(roll_number)
+    iterations = 0
+    while iterations < roll_number:
+        iterations += 1
+        dice[iterations - 1] = random.choice(numbers) #TypeError: 'range' object does not support item assignment. Tiene que obtener el valor de una lista, fijarse en la linea 72 para cambiar el tipo de variable y que la tome.
+    return dice
+
     
 def throws():
     roll_number = 5
     dice = roll(roll_number)
-    dice.sort()
-    for i in range(len(dice)):
-        print ("Dice", i + 1, ":", names[dice[i]])
-    
-    result = hand(dice)
-    print ("You currently have", result)
+    result = _extracted_from_throws_(dice)
+    print ("You currently have", names[result])
 
     while True:
         rerolls = int(input("How many dice do you want to throw again?"))
@@ -34,39 +37,11 @@ def throws():
                 break
         print ("Oops! I didn't understand that. Please enter 1, 2, 3, 4, or 5.")
 
-    if rerolls == 0:
+    if rerolls != 0:
         result = _extracted_from_throws_(rerolls, dice)
-        print ("You finish with", names[result])
-    else:
-        roll_number = rerolls
-        dice_rerolls = roll(roll_number)
-        dice_changes = range(rerolls)
-        print ("Enter the number of a dice to reroll: ")
-        iterations = 0
-        while iterations < rerolls:
-            iterations += 1
-            while True:
-                selection = int(input())
-                with contextlib.suppress(ValueError):
-                    if selection in {1, 2, 3, 4, 5}:
-                        break
-                print ("Oops! I didn't understand that. Please enter 1, 2, 3, 4, or 5.")
-            dice_changes[iterations - 1] = selection - 1
-            print ("You have changed Dice", selection, ":", names[dice_rerolls[iterations - 1]])        
-        iterations = 0
-        
-        while iterations < rerolls:
-            iterations += 1
-            replacement = dice_changes[iterations - 1]
-            dice[dice_changes[iterations - 1]] = dice_rerolls[replacement]
-        
-        dice.sort()
-        for i in range(len(dice)):
-            print ("Dice", i + 1, ":", names[dice[i]])
-        
-        result = hand(dice)
-        print ("You finish with", result)
-        
+    print ("You finish with", names[result])
+
+
 # TODO Rename this here and in `throws`
 def _extracted_from_throws_(rerolls, dice):
     roll_number = rerolls
@@ -76,7 +51,7 @@ def _extracted_from_throws_(rerolls, dice):
     iterations = 0
     while iterations < rerolls:
         iterations += 1
-        while true:
+        while True:
             selection = int(input())
             with contextlib.suppress(ValueError):
                 if selection in {1, 2, 3, 4, 5}:
@@ -95,20 +70,13 @@ def _extracted_from_throws_(rerolls, dice):
     return _extracted_from_throws_(dice)
 
 
+# TODO Rename this here and in `throws`
 def _extracted_from_throws_(dice):
     dice.sort()
     for i in range(len(dice)):
         print ("Dice", i + 1, ":", dice[i])
     return hand(dice)
-        
-def roll(roll_number):
-    numbers = list(range(1, 7)) #No lo toma, en la linea 77, aunque sea lista
-    dice = range(roll_number)
-    iterations = 0
-    while iterations < roll_number:
-        iterations += 1
-        dice[iterations - 1] = random.choice() #TypeError: 'range' object does not support item assignment. Tiene que obtener el valor de una lista, fijarse en la linea 72 para cambiar el tipo de variable y que la tome.
-    return dice
+
 
 def hand(dice):
     dice_hand = [len(list(group)) for key, group in groupby(dice)]
@@ -117,20 +85,20 @@ def hand(dice):
     straight2 = [2,3,4,5,6]
 
     if dice in [straight1, straight2]:
-        return "a straight2"
+        return straight2
 
     elif dice_hand[0] == 5:
-        return "five of a kind!"
+        return five
 
     elif dice_hand[0] == 4:
-        return "four of a kind!"
+        return four
 
     elif dice_hand[0] == 3:
-        return " a full_house!" if dice_hand[1] == 2 else "three of a kind!"
+        return full_house if dice_hand[1] == 2 else three
     elif dice_hand[0] == 2:
-        return "two_pair" if dice_hand[1] == 2 else "one_pair"
+        return two_pair if dice_hand[1] == 2 else one_pair
     else:
-        return "nine"
+        return nine
 
 def play_again():
     answer = input("Would you like to play again? y/n: ")
@@ -139,6 +107,11 @@ def play_again():
     else:
         print ("Thank you very much for playing our game. See you next time!")
         
+def scores():
+    global player_score, computer_score
+    print ("HIGH SCORES")
+    print ("Player: ", player_score)
+    print ("Computer: ", computer_score)
 
 def game():
     print ("The computer will help you to pick a card.")
@@ -150,12 +123,6 @@ def start():
     while game():
         pass
     scores()
-
-def scores():
-    global player_score, computer_score
-    print ("HIGH SCORES")
-    print ("Player: ", player_score)
-    print ("Computer: ", computer_score)
 
 if __name__ == '__main__':
     start()
