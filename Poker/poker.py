@@ -21,7 +21,7 @@ def throws():
     result = _extracted_from_throws_(dice)
     print ("You currently have", names[result])
 
-    while true:
+    while True:
         rerolls = int(input("How many dice do you want to throw again?"))
         with contextlib.suppress(ValueError):
             if rerolls in {1, 2, 3, 4, 5}:
