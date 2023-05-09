@@ -1,8 +1,8 @@
 from tkinter import *
 
-import /rock_paper_scissors.py
-import /hangman.py
-import /poker.py
+import {Rock_Paper_Scissors/Rock_paper_scissors.py}
+import /Hangman/hangman.py
+import /Poker/poker.py
 
 root = Tk()
 root.title("Games")
