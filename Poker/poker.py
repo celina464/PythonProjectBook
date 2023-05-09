@@ -79,7 +79,11 @@ def _extracted_from_throws_(dice):
     return hand(dice)
         
 def roll(roll_number):
+<<<<<<< Updated upstream
     numbers = range(1,7)
+=======
+    numbers = range(1 , 7) #No lo toma, en la linea 77, aunque sea lista
+>>>>>>> Stashed changes
     dice = range(roll_number)
     iterations = 0
     while iterations < roll_number:
