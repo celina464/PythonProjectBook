@@ -75,3 +75,5 @@ def gui():
     player_choice.set(1)
     player_score = IntVar()
     computer_score = IntVar()
+
+    input()
