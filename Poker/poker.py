@@ -76,7 +76,7 @@ def _extracted_from_throws_(rerolls, dice):
     iterations = 0
     while iterations < rerolls:
         iterations += 1
-        while true:
+        while True:
             selection = int(input())
             with contextlib.suppress(ValueError):
                 if selection in {1, 2, 3, 4, 5}:
