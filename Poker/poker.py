@@ -69,12 +69,12 @@ def _extracted_from_throws_(dice):
     return hand(dice)
         
 def roll(roll_number):
-    numbers = list(range(1, 7)) #No lo toma, en la linea 77, aunque sea lista
+    numbers = list(range(1 , 7)) #No lo toma, en la linea 77, aunque sea lista
     dice = range(roll_number)
     iterations = 0
     while iterations < roll_number:
         iterations += 1
-        dice[iterations - 1] = random.choice() #TypeError: 'range' object does not support item assignment. Tiene que obtener el valor de una lista, fijarse en la linea 72 para cambiar el tipo de variable y que la tome.
+        dice[iterations - 1] = random.choice(numbers) #TypeError: 'range' object does not support item assignment. Tiene que obtener el valor de una lista, fijarse en la linea 72 para cambiar el tipo de variable y que la tome.
     return dice
 
 def hand(dice):
