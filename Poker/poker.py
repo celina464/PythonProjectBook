@@ -14,6 +14,15 @@ names = {nine: "Nine", ten: "Ten", jack: "Jack", queen: "Queen", king: "King", a
 player_score = 0
 computer_score = 0
 
+def roll(roll_number):
+    numbers = list(range(1, 7)) #No lo toma, en la linea 77, aunque sea lista
+    dice = range(roll_number)
+    iterations = 0
+    while iterations < roll_number:
+        iterations += 1
+        dice[iterations - 1] = random.choice(numbers) #TypeError: 'range' object does not support item assignment. Tiene que obtener el valor de una lista, fijarse en la linea 72 para cambiar el tipo de variable y que la tome.
+    return dice
+
     
 def throws():
     roll_number = 5
@@ -68,14 +77,6 @@ def _extracted_from_throws_(dice):
         print ("Dice", i + 1, ":", dice[i])
     return hand(dice)
 
-def roll(roll_number):
-    numbers = list(range(1, 7)) #No lo toma, en la linea 77, aunque sea lista
-    dice = range(roll_number)
-    iterations = 0
-    while iterations < roll_number:
-        iterations += 1
-        dice[iterations - 1] = random.choice(numbers) #TypeError: 'range' object does not support item assignment. Tiene que obtener el valor de una lista, fijarse en la linea 72 para cambiar el tipo de variable y que la tome.
-    return dice
 
 def hand(dice):
     dice_hand = [len(list(group)) for key, group in groupby(dice)]
