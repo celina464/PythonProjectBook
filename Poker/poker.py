@@ -15,32 +15,13 @@ player_score = 0
 computer_score = 0
 
 def roll(roll_number):
-    numbers = list(range(1, 7)) #No lo toma, en la linea 77, aunque sea lista
+    numbers = list(range(1,7))
     dice = range(roll_number)
     iterations = 0
     while iterations < roll_number:
         iterations += 1
-        dice[iterations - 1] = random.choice(numbers) #TypeError: 'range' object does not support item assignment. Tiene que obtener el valor de una lista, fijarse en la linea 72 para cambiar el tipo de variable y que la tome.
+        dice[iterations - 1] = random.choice(numbers)
     return dice
-
-    
-def throws():
-    roll_number = 5
-    dice = roll(roll_number)
-    result = _extracted_from_throws_(dice)
-    print ("You currently have", names[result])
-
-    while True:
-        rerolls = int(input("How many dice do you want to throw again?"))
-        with contextlib.suppress(ValueError):
-            if rerolls in {1, 2, 3, 4, 5}:
-                break
-        print ("Oops! I didn't understand that. Please enter 1, 2, 3, 4, or 5.")
-
-    if rerolls != 0:
-        result = _extracted_from_throws_(rerolls, dice)
-    print ("You finish with", names[result])
-
 
 # TODO Rename this here and in `throws`
 def _extracted_from_throws_(rerolls, dice):
@@ -69,13 +50,29 @@ def _extracted_from_throws_(rerolls, dice):
 
     return _extracted_from_throws_(dice)
 
-
 # TODO Rename this here and in `throws`
 def _extracted_from_throws_(dice):
     dice.sort()
     for i in range(len(dice)):
         print ("Dice", i + 1, ":", dice[i])
     return hand(dice)
+
+def throws():
+    roll_number = 5
+    dice = roll(roll_number)
+    result = _extracted_from_throws_(dice)
+    print ("You currently have", names[result])
+
+    while True:
+        rerolls = int(input("How many dice do you want to throw again?"))
+        with contextlib.suppress(ValueError):
+            if rerolls in {1, 2, 3, 4, 5}:
+                break
+        print ("Oops! I didn't understand that. Please enter 1, 2, 3, 4, or 5.")
+
+    if rerolls != 0:
+        result = _extracted_from_throws_(rerolls, dice)
+    print ("You finish with", names[result])
 
 
 def hand(dice):
@@ -84,21 +81,29 @@ def hand(dice):
     straight1 = [1,2,3,4,5]
     straight2 = [2,3,4,5,6]
 
-    if dice in [straight1, straight2]:
-        return straight2
+    if dice == straight1 or dice == straight2:
+        print("a straight")
 
     elif dice_hand[0] == 5:
-        return five
+        print("Cinco de un mismo tipo")
 
     elif dice_hand[0] == 4:
-        return four
+        print("Cuatro de un mismo tipo")
 
-    elif dice_hand[0] == 3:
-        return full_house if dice_hand[1] == 2 else three
+    elif dice_hand[0] == 3: 
+        if dice_hand[1] == 2: 
+            print("Full house")
+        else:
+            print("Tres de un mismo tipo")
+    
     elif dice_hand[0] == 2:
-        return two_pair if dice_hand[1] == 2 else one_pair
+        if dice_hand[1] == 2:
+            print("Dos pares")
+        else:
+            print("Un par")
     else:
-        return nine
+        print("Una carta alta")
+
 
 def play_again():
     answer = input("Would you like to play again? y/n: ")
