@@ -20,7 +20,7 @@ def roll(roll_number):
     iterations = 0
     while iterations < roll_number:
         iterations += 1
-        dice[iterations - 1] = random.choice(numbers)
+        dice[iterations-1] = random.choice(numbers)
     return dice
 
 # TODO Rename this here and in `throws`
@@ -107,19 +107,19 @@ def hand(dice):
 
 def play_again():
     answer = input("Would you like to play again? y/n: ")
-    if answer in ("y", "Y", "yes", "Yes", "Of course!"):
+    if answer in ["y", "Y", "yes", "Yes", "Of course!"]:
         return answer
     else:
-        print ("Thank you very much for playing our game. See you next time!")
+        print("Thank you very much for playing our game. See you next time!")
         
 def scores():
     global player_score, computer_score
-    print ("HIGH SCORES")
-    print ("Player: ", player_score)
-    print ("Computer: ", computer_score)
+    print("HIGH SCORES")
+    print("Player: ", player_score)
+    print("Computer: ", computer_score)
 
 def game():
-    print ("The computer will help you to pick a card.")
+    print("The computer will help you to pick a card.")
     throws()
     return play_again()
 
