@@ -102,7 +102,7 @@ def hand(dice):
         else:
             print("Un par")
     else:
-        print("Una carta alta")
+        print("Una carta alta"
 
 
 def play_again():
