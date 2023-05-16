@@ -81,7 +81,7 @@ def hand(dice):
     straight1 = [1,2,3,4,5]
     straight2 = [2,3,4,5,6]
 
-    if dice == straight1 or dice == straight2:
+    if dice in [straight1, straight2]:
         print("a straight")
 
     elif dice_hand[0] == 5:
@@ -95,7 +95,7 @@ def hand(dice):
             print("Full house")
         else:
             print("Tres de un mismo tipo")
-    
+
     elif dice_hand[0] == 2:
         if dice_hand[1] == 2:
             print("Dos pares")
