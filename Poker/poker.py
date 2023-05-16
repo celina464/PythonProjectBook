@@ -61,7 +61,7 @@ def throws():
     roll_number = 5
     dice = roll(roll_number)
     result = _extracted_from_throws_(dice)
-    print ("You currently have", names[result])
+    print ("You currently have", names, result)
 
     while True:
         rerolls = int(input("How many dice do you want to throw again?"))
