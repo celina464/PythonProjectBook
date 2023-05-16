@@ -16,7 +16,7 @@ computer_score = 0
 
 def roll(roll_number):
     numbers = list(range(1,7))
-    dice = range(roll_number)
+    dice = list(range(roll_number))
     iterations = 0
     while iterations < roll_number:
         iterations += 1
@@ -102,7 +102,7 @@ def hand(dice):
         else:
             print("Un par")
     else:
-        print("Una carta alta"
+        print("Una carta alta")
 
 
 def play_again():
