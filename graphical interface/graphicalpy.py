@@ -127,4 +127,4 @@ Label(rps_frame, textvariable = computer_score).grid(column = 3, row = 6, sticky
 Label(rps_frame, textvariable = result_set).grid(column = 2, row = 7)
 if __name___ == "__main__":
         gui()
-        #hola mundo
+        #hola mu
